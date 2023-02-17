@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -10,7 +11,11 @@ namespace WebApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<Department> list = new List<Department>();
+            list.Add(new Department { Id = 1, Name = "Desenvolvimento" });
+            list.Add(new Department { Id = 1, Name = "Financeiro" });
+
+            return View(list);
         }
     }
 }
