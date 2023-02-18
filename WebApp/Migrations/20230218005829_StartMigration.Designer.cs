@@ -10,8 +10,8 @@ using WebApp.Data;
 namespace WebApp.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20230218001111_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20230218005829_StartMigration")]
+    partial class StartMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,13 +46,11 @@ namespace WebApp.Migrations
 
                     b.Property<int?>("SellerId");
 
-                    b.Property<int?>("StatusId");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SellerId");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("SalesRecord");
                 });
@@ -85,10 +83,6 @@ namespace WebApp.Migrations
                     b.HasOne("WebApp.Models.Seller", "Seller")
                         .WithMany("Sales")
                         .HasForeignKey("SellerId");
-
-                    b.HasOne("WebApp.Models.SalesRecord", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("WebApp.Models.Seller", b =>
