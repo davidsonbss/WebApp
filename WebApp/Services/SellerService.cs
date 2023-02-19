@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApp.Data;
 using WebApp.Models;
+using WebApp.Services.Exceptions;
 
 namespace WebApp.Services
 {
@@ -37,6 +38,22 @@ namespace WebApp.Services
             var obj = _context.Seller.Find(id);
             _context.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Seller obj)
+        {
+            if(!_context.Seller.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id not found");
+            }
+            try{
+                _context.Update(obj);
+                _context.SaveChanges();
+            }
+            catch(DbUpdateConcurrencyException e)
+            {
+                throw new DbConcurrencyException(e.Message);
+            }
         }
     }
 }
