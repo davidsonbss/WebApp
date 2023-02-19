@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
+using WebApp.Services;
 
 namespace WebApp
 {
@@ -40,6 +41,7 @@ namespace WebApp
                     options.UseSqlServer(Configuration.GetConnectionString("WebAppContext")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
