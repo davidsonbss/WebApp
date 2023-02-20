@@ -12,10 +12,9 @@ namespace WebApp.Services
     {
         private readonly WebAppContext _context;
 
-
-        public SellerService(WebAppContext contex)
+        public SellerService(WebAppContext context)
         {
-            _context = contex;
+            _context = context;
         }
 
         public async Task<List<Seller>> FindAllAsync()
